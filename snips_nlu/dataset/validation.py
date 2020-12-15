@@ -188,21 +188,7 @@ def _validate_and_format_custom_entity(entity, utterance_entities, language,
 
     # Add variations if not colliding
     all_original_values = _extract_entity_values(entity)
-    if len(entity[DATA]) < VARIATIONS_GENERATION_THRESHOLD:
-        variations_args = {
-            "case": True,
-            "and_": True,
-            "punctuation": True
-        }
-    else:
-        variations_args = {
-            "case": False,
-            "and_": False,
-            "punctuation": False
-        }
-
-    variations_args["numbers"] = len(
-        entity[DATA]) < NUMBER_VARIATIONS_THRESHOLD
+    variations_args = {"case": True, "and_": True, "punctuation": True, "numbers": True}
 
     variations = dict()
     for data in entity[DATA]:
